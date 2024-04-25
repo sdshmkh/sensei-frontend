@@ -2,17 +2,14 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 body {
   margin: 0;
@@ -20,15 +17,11 @@ body {
   place-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 #app {
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
 button {
@@ -42,9 +35,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -55,52 +50,57 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
   button {
     background-color: #f9f9f9;
   }
 }
 
-#webcam {
-  transform: scaleX(-1);
-}
+/* video, #webcam {
+  width: 100%;
+  height: auto;
+} */
 
 video {
+  display: block;
   width: 480px;
-  height: 360px;
-  display: none;
+  heigth: 360px;
+  clear: both;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
 }
+
 
 #flex-container {
   display: flex;
-  font-family: Consolas, Arial, sans-serif;
-  width: 100vw;
-  height: 100vh;
 }
 
-#flex-container > div {
+.app-container {
   display: flex;
-  padding: 1rem;
-  flex: 1 1;
+  column-gap: 20px;
+  width: 95vw;
+  height: 90vh;
+  width: inherit;
+  height: inherit;
+}
+
+.vc-container {
+  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  flex: 1 1 auto;
+  padding: 2px;
+  overflow-y: scroll;
+  
 }
 
-#flex-auto {
-  flex: auto;
-  border: 1px;
-  position: relative;
+.three-container{
+  flex-grow: 3;
 }
-
-#flex-initial {
-  display: flexbox;
-} 
 
 canvas {
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 
 .brand-color {
@@ -111,7 +111,29 @@ canvas {
   color: white;
 }
 
+#chat-container {
+  flex-grow: 1;  /* Allows the chat container to grow and fill the space */
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: hidden; /* Prevents overflow issues */
+}
+
+#chat-box {
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+}
+
+#message-input, button {
+  width: auto;
+  flex-grow: 1; /* Allows input and button to grow and fill the form space */
+}
+
+
 #replayButton {
-  display: none;
-  justify-content: center;
+  display: none
 }
