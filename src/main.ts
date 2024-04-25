@@ -1,5 +1,7 @@
 import './style.css'
 import { display } from './models/pose.ts'
+import { getWorkoutPlan, displayMessage, displayWorkoutPlan } from './openai/sensei_assistant.ts'
+
 
 let userWebcamStream: MediaStream
 document.getElementById('startWebcam')!.addEventListener('click', function() {
@@ -35,6 +37,17 @@ document.getElementById('startSensei')!.addEventListener('click', function() {
   document.getElementById('startSensei')!.style.display = 'none'
   document.getElementById('replayButton')!.style.display = 'block'
 })
+
+document.getElementById('message-form')!.addEventListener('submit', async function(event) {
+  event.preventDefault();
+  const messageInput = document.getElementById('message-input')! as HTMLInputElement;
+  const userMessage: string = messageInput.value.trim();
+
+  const plan = await getWorkoutPlan(userMessage)
+  displayWorkoutPlan(plan);
+
+  messageInput.value = ''; // Clear input field after sending message
+});
 
 
 display()
