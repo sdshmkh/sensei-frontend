@@ -95,6 +95,7 @@ video {
 }
 
 .three-container{
+  position: relative;
   flex-grow: 3;
 }
 
